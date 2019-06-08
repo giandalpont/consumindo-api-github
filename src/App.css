@@ -1,33 +1,136 @@
-.App {
+html,body{
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486)
+}
+a{
+  text-decoration: none;
+  color: #131b20;
+}
+
+.main{
+  background: linear-gradient(0deg, #E5E5E5 0%, #fff 100%);
+  padding: 2px;
+  margin-right: 8%;
+  margin-left: 8%;
+  border-radius: 15px;
+}
+.container{
+  display: flex;
+  max-width: 1170px;
+  width: 100%;
+}
+
+.search {
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: sans-serif;
+  background: #fff;
+  display: flex;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  z-index: 3;
+  height: 44px;
+  margin: 0 auto;
+  width: 482px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.search:hover,.search:focus{
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+    border-color: rgba(223,225,229,0);
+}
+.search:-webkit-any-link{
+  text-decoration: none;
+}
+input:focus, select:focus {
+  outline: 0;
+}
+.search [type='search'] {
+  background-color: #131b20;
+  color: #fff;
+  padding: 0.5em .5em;
+  text-align: center;
+  width: 100%;
+}
+
+
+.card-profile {
+  width: 340px;
+  border-radius: 10px;
+  margin: 20px;
+  background-color: #e6e5e1;
+  box-shadow: 0em 0em 2em rgba(0, 0, 0, 0.2);
+}
+.card-profile .card-img-top {
+  border-radius: 10px 10px 0 0;
+}
+.card-block{
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.card-profile .card-img-profile {
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  border-radius: 50%;
+  margin-top: -95px;
+  margin-bottom: 35px;
+  border: 5px solid #e6e5e1;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card-profile .card-title {
+  margin-bottom: 50px;
+}
+.card-profile .card-links {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+  font-size: 15px;
+  background-color: rgba(27, 61, 78, 0.5);
+}
+.card-profile .card-links .fa {
+    width: 25%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+.card-profile .card-links .fa:focus, .card-profile .card-links .fa:hover {
+  text-decoration: none;
+}
+
+.btn-box{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin: 20px;
+}
+.btn{
+  border-radius: 15px;
+  border: 1px solid#FFF;
+  padding: 10px;
+  width: 120px;
+  margin: 10px;
+  background-color: #FFF;
+  transition: all .4s ease-in-out;
+}
+.btn:hover{
+  background-color: #0061917c;
+  border-color: #0061917c;
+  transition: all .4s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.box-conteudo{
+  display: block;
+  margin: 0 auto;
+  max-width: 650px;
+  width: 100%;
+  margin-top: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.caixa-mostra{
+  background: #00BF98;
+  padding: 1px 20px 20px 20px;
+  margin-top: 20px;
+  border-radius: 15px;
 }
