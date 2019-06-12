@@ -1,97 +1,86 @@
 import React, { Component } from 'react'
-import ControlledExpansionPanels from './ControlledExpansionPanels'
+import ajax from '@fdaciuk/ajax'
+import AppConteiner from './componentes/app-container'
 
 import './App.css'
 
 class App extends Component {
 
-    constructor () {
+    constructor(){
         super()
-        this.state = {
-            color: 'yellow',
-            showTimer: true
+        this.state={
+            userinfo: null,
+            repos: [],
+            starred: [],
+            isFatching: false
+        }
+        this.hendleSearch = this.hendleSearch.bind(this)
+    }
+
+    getGitHubApiUrl(username, type){
+        const internalUser = username ? `/${username}` : ''
+        const internalType = type ? `/${type}` : ''
+        return `https://api.github.com/users${internalUser}${internalType}`
+    }
+
+    hendleSearch (e){
+        const value = e.target.value
+        const keyCode = e.white || e.keyCode
+        const ENTER = 13
+
+        if(keyCode === ENTER){
+            this.setState({ isFatching: true })
+
+            ajax().get(this.getGitHubApiUrl(value))
+            .then((result)=>{
+                this.setState({
+                    userinfo:{
+                        username: result.name,
+                        photo: result.avatar_url,
+                        login: result.login,
+                        repos: result.public_repos,
+                        followers: result.followers,
+                        following: result.following,
+                    },
+                    repos: [],
+                    starred: []
+                })
+                // console.log('change', result)
+            })
+            .always( ()=>{
+                this.setState({ isFatching: false })
+            } )
         }
     }
 
-    componentWillMount(){
-        console.log('componentWillMount')
+    getRepos(type){
+        return (e)=>{
+            // console.log('type:', type)
+            const username = this.state.userinfo.login
+            ajax().get(this.getGitHubApiUrl(username,type))
+            .then((result)=>{
+                this.setState({
+                    [type]: result.map((repo)=>({
+                        name: repo.name,
+                        link: repo.html_url,
+                    }))
+                })
+            })
+        }
     }
-
-    componentDidMount (){
-        console.log('componrntDidMount')
-    }
-
 
     render (){
-        console.log('render')
         return (
-            <div className="App" >
-                
-                <input className="search"  placeholder="Search..."/>
-
-                <div className="main">
-                    <div className="container">
-                        <div className="card card-profile text-center">
-                            <img alt="" className="card-img-top" src="https://unsplash.it/340/160?image=354" />
-                            <div className="card-block">
-                                <img alt="" className="card-img-profile" src="https://avatars1.githubusercontent.com/u/35267440?v=4&s=140" />
-                                <h4 className="card-title">
-                                    Gian Carlos Dal Pont
-                                    <br />
-                                    <small>giandalpont</small>
-                                    <div className="btn-box">
-                                        <a href="">
-                                            <div className="btn btn-primery">
-                                                Repositorios
-                                            </div>
-                                        </a>
-                                        <a href="">
-                                            <div className="btn btn-primery">
-                                                Favoritos
-                                            </div>
-                                        </a>
-                                    </div>
-                                </h4>
-                                <div className="card-links">
-                                    <span className="fa fa-dribbble" href="#">Repositories <br /> 22 </span>
-                                    <span className="fa fa-twitter" href="#">Followers <br /> 22</span>
-                                    <span className="fa fa-facebook" href="#" >Following <br /> 234</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box-conteudo">
-                            <ControlledExpansionPanels  />
-                        </div>
-                    </div>
-                </div>
-
-{/* 
-                { this.state.showTimer && <Timer /> }
-                <button onClick={ ()=>{ this.setState({ showTimer: !this.state.showTimer })} } > Show / Hide timer</button>
-                <Titulo />
-                <div  onClick={()=>{
-                    alert('clicou')
-                }} >
-                    <Button>texto</Button>
-                </div>
-                {['blue','red','green'].map((square)=>(
-                    <Square key={square}  color={square} />
-                ))}
-                <br />
-                <br />
-                <br />
-                <br />
-                
-                <Square color={ this.state.color }/>
-                {['red','green','blue'].map((color) => (
-                    <Button 
-                        key={color} 
-                        handleClick={()=> this.setState({ color })}>
-                        {color}
-                    </Button>
-                ))} */}
-
-            </div>
+            <AppConteiner 
+                { ...this.state }
+                // userinfo={ this.state.userinfo }
+                // repos={ this.state.repos }
+                // starred={ this.state.starred }
+                // isFatching={ this.state.isFatching }
+                hendleSearch={ this.hendleSearch }
+                getRepos={ this.getRepos('repos') }
+                getStarred={ this.getRepos('starred') }
+            />
         )
     }
 }
