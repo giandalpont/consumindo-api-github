@@ -1,7 +1,8 @@
 html,body{
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486)
+  background-image: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  font-family: sans-serif;
 }
 a{
   text-decoration: none;
@@ -13,7 +14,7 @@ h2{
 }
 
 .main{
-  background: linear-gradient(0deg, #E5E5E5 0%, #fff 100%);
+  background: #f4fbfe;
   padding: 2px;
   margin-right: 8%;
   margin-left: 8%;
@@ -23,8 +24,23 @@ h2{
   display: flex;
   max-width: 1170px;
   width: 100%;
+  min-height: 400px;
+  height: 100%;
 }
-
+.loading{
+  width: 100%;
+}
+.loading img{
+  display: block;
+  margin: 0 auto;
+}
+.texto h2{
+  text-align: center;
+  margin-top: 30px;
+}
+.texto p{
+  margin-left: 40px;
+}
 .search {
   font-size: 1.5rem;
   text-align: center;

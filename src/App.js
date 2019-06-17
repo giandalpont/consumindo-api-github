@@ -12,7 +12,8 @@ class App extends Component {
             userinfo: null,
             repos: [],
             starred: [],
-            isFatching: false
+            isFatching: false,
+            isText: true
         }
         this.hendleSearch = this.hendleSearch.bind(this)
     }
@@ -43,7 +44,8 @@ class App extends Component {
                         following: result.following,
                     },
                     repos: [],
-                    starred: []
+                    starred: [],
+                    isText: false
                 })
                 // console.log('change', result)
             })

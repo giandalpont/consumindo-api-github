@@ -5,7 +5,7 @@ const Search =  ({ hendleSearch, isDisabled}) => (
     <input 
         className='search' 
         type='search'  
-        placeholder='Search....' 
+        placeholder='Buscar...' 
         disabled={ isDisabled }
         onKeyUp={ hendleSearch }
     />
