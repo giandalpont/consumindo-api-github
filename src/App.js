@@ -30,7 +30,7 @@ class App extends Component {
         const ENTER = 13
 
         if(keyCode === ENTER){
-            this.setState({ isFatching: true })
+            this.setState({ isFatching: true, isText: false })
 
             ajax().get(this.getGitHubApiUrl(value))
             .then((result)=>{
@@ -45,7 +45,6 @@ class App extends Component {
                     },
                     repos: [],
                     starred: [],
-                    isText: false
                 })
                 // console.log('change', result)
             })
